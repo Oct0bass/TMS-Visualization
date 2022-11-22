@@ -6,10 +6,13 @@ def x(a): return a[0]
 def y(a): return a[1]
 
 
-def slope(start, end, line: Line = None):
+def slope(start=None, end=None, line: Line = None):
+    if start is None and end is None and line is None:
+        raise ValueError("No points or line specified")
+
     if line is not None:
-        if start or end:
-            raise ValueError("cannot accept both slope and line")
+        if start is not None or end is not None:
+            raise ValueError("Cannot accept both slope and line")
         start = line.start
         end = line.end
 
